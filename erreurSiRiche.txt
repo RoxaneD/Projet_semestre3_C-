@@ -1,15 +1,18 @@
-# Erreurs testées : (ligne par ligne séparement)
-# {-- 
-# pas la premiere parenthèse apres si 
-# pas la premiere parenthèse apres sinonsi 
-# rien dans le sinon 
-# rien dans la premiere parenthèse 
-# rien dans la deuxième parenthèse 
-# --}
-# {--
-# pas la derniere parenthèse apres si
-# pas la derniere parenthèse apres sinonsi
-# --}
+# Erreurs testées : 
+####
+# pas la premiere parenthèse apres si       (accumulable)
+# rien dans la premiere parenthèse          (accumulable)
+# pas la derniere parenthèse apres si       (accumulable)
+# pas la premiere parenthèse apres sinonsi  (accumulable) 
+# rien dans la deuxième parenthèse          (accumulable)
+# pas la derniere parenthèse apres sinonsi  (accumulable)
+# rien dans le sinon                        (accumulable)
+
+# Erreurs qu'on ne peut pas cumuler :
+####
+# On ne peut pas obtenir d'erreur claire s'il n'y a rien du tout entre si et les instructions du si 
+# idem pour le sinonsi
+
 
 procedure principale()
     i = 16;
@@ -22,4 +25,16 @@ procedure principale()
     sinon
         k=4;
     finsi
+
+    i = 16;
+    si (i == 16)
+        j=1;
+        k=2;    
+    sinonsi (i == 17)
+        j=2;
+        k=3;
+    sinon
+        k=4;
+    finsi
+
 finproc
