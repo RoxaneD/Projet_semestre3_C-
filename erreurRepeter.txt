@@ -1,0 +1,24 @@
+# Erreurs testées : 
+####
+# pas d'intruction après repeter            (accumulable)
+# pas de première parenthèse après jusqua   (accumulable)
+# pas de condition entre les parenthèses    (accumulable)
+# pas de dernière parenthèse après jusqua   (accumulable)
+
+# Erreurs qu'on ne peut pas cumuler :
+####
+# On ne peut pas obtenir d'erreur claire s'il n'y a rien du tout après jusqua
+
+procedure principale()
+    i = 16;
+
+    repeter
+        i = i-1;
+    jusqua (i<10)
+
+    repeter
+        i = i-1;
+    jusqua (i<5)
+
+
+finproc
