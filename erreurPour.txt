@@ -1,0 +1,19 @@
+# Erreurs testées : 
+#### (accumulable)
+# pas de première parenthèse après le pour
+#
+
+# Erreurs qu'on ne peut pas cumuler :
+####
+# On ne peut pas obtenir d'erreur claire s'il n'y a rien du tout après jusqua
+
+procedure principale()
+    i = 16;
+    j = 1;
+
+    pour (;j<5;)
+        i=i-1;
+        j=j+1;
+    finpour
+
+finproc

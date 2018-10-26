@@ -98,12 +98,17 @@ Noeud* Interpreteur::inst() {
 
 Noeud* Interpreteur::affectation() {
     // <affectation> ::= <variable> = <expression> 
-    tester("<VARIABLE>");
-    Noeud* var = m_table.chercheAjoute(m_lecteur.getSymbole()); // La variable est ajoutée à la table et on la mémorise
-    m_lecteur.avancer();
-    testerEtAvancer("=");
-    Noeud* exp = expression(); // On mémorise l'expression trouvée
-    return new NoeudAffectation(var, exp); // On renvoie un noeud affectation
+    try {
+        tester("<VARIABLE>");
+        Noeud* var = m_table.chercheAjoute(m_lecteur.getSymbole()); // La variable est ajoutée à la table et on la mémorise
+        m_lecteur.avancer();
+        testerEtAvancer("=");
+        Noeud* exp = expression(); // On mémorise l'expression trouvée
+        return new NoeudAffectation(var, exp); // On renvoie un noeud affectation
+    } catch (SyntaxeException & e) {
+        cout << e.what() << endl;
+        return nullptr;
+    }
 }
 
 Noeud* Interpreteur::expression() {
@@ -157,7 +162,7 @@ Noeud * Interpreteur::chaine() {
     return new NoeudChaine(m_lecteur.getSymbole()); //censé retourner un NoeudChaine (Symbole de type CHAINE)
 }
 
-Noeud * Interpreteur::instSiRiche(int i, int j, bool b) {   // OK (Erreur)
+Noeud * Interpreteur::instSiRiche(int i, int j, bool b) { // OK (Erreur)
     //  <instSiRiche> ::= si (<expression>) <seqInst> { sinonsi (<expression>) <seqInst> } [sinon <seqInst>] finsi
     NoeudInstSiRiche* sequence = new NoeudInstSiRiche();
     Noeud* exp;
@@ -309,9 +314,7 @@ Noeud * Interpreteur::instTantQue(int i, bool b) { // OK (Erreur)
             return nullptr;
         }
     } catch (SyntaxeException & e) {
-        if (i == 2) {
-            ;
-        } else if (i == 4) {
+        if (i == 2 || i == 4) {
             ;
         } else {
             cout << e.what() << endl;
@@ -323,12 +326,12 @@ Noeud * Interpreteur::instTantQue(int i, bool b) { // OK (Erreur)
     }
 }
 
-Noeud * Interpreteur::instRepeter(int i, bool b) {
+Noeud * Interpreteur::instRepeter(int i, bool b) { // OK (Erreur)
     //  repeter <seqInst> jusqua (<expression>)
     Noeud* sequence;
     Noeud* condition;
     try {
-        if (i == 0){
+        if (i == 0) {
             testerEtAvancer("repeter");
             i = 1;
         }
@@ -364,11 +367,8 @@ Noeud * Interpreteur::instRepeter(int i, bool b) {
             m_arbre = nullptr;
             return nullptr;
         }
-        
     } catch (SyntaxeException & e) {
-        if (i == 1) {
-            ;
-        } else if (i == 4) {
+        if (i == 1 || i == 4) {
             ;
         } else {
             cout << e.what() << endl;
@@ -382,26 +382,80 @@ Noeud * Interpreteur::instRepeter(int i, bool b) {
 
 Noeud * Interpreteur::instPour(int i, bool b) {
     //  pour ([<affectation>] ; <expression> ; [<affectation>]) <seqInst> finpour
+    cout << "i : " << i << endl;
+    Noeud* affect1;
+    Noeud* condition;
+    Noeud* affect2;
+    Noeud* sequence;
     try {
-        testerEtAvancer("pour");
-        testerEtAvancer("(");
-        Noeud* affect1 = nullptr;
-        if (m_lecteur.getSymbole() == "<VARIABLE>") {
-            affect1 = affectation();
+        if (i == 0) {
+            testerEtAvancer("pour");
+            i = 1;
         }
-        testerEtAvancer(";");
-        Noeud* condition = expression();
-        testerEtAvancer(";");
-        Noeud* affect2 = nullptr;
-        if (m_lecteur.getSymbole() == "<VARIABLE>") {
-            affect2 = affectation();
+        if (i == 1) {
+            testerEtAvancer("(");
+            i = 2;
         }
-        testerEtAvancer(")");
-        Noeud* sequence = seqInst();
-        testerEtAvancer("finpour");
-        return new NoeudInstPour(affect1, condition, affect2, sequence);
+        if (i == 2) {
+            affect1 = nullptr;
+            if (m_lecteur.getSymbole() == "<VARIABLE>") {
+                affect1 = affectation();
+            }
+            i = 3;
+        }
+        if (i == 3) {
+            testerEtAvancer(";");
+            i = 4;
+        }
+        if (i == 4) {
+            condition = expression();
+            if (condition == nullptr) {
+                throw SyntaxeException();
+            }
+            i = 5;
+        }
+        if (i == 5) {
+            testerEtAvancer(";");
+            i = 6;
+        }
+        if (i == 6) {
+            affect2 = nullptr;
+            if (m_lecteur.getSymbole() == "<VARIABLE>") {
+                affect2 = affectation();
+            }
+            i = 7;
+        }
+        if (i == 7) {
+            testerEtAvancer(")");
+            i = 8;
+        }
+        if (i == 8) {
+            sequence = seqInst();
+            if (sequence == nullptr) {
+                throw SyntaxeException();
+            }
+            i = 9;
+        }
+        if (i == 9) {
+            testerEtAvancer("finpour");
+            i = 10;
+        }
+        if (i == 10 && b == false) {
+            return new NoeudInstPour(affect1, condition, affect2, sequence);
+        } else if (i == 10) {
+            m_arbre = nullptr;
+            return nullptr;
+        }
     } catch (SyntaxeException & e) {
-        cout << e.what() << endl;
+        if ( i == 4 || i == 8) {
+            ;
+        } else {
+            cout << e.what() << endl;
+        }
+        bool b = true;
+        setSynthaxeIncorrecte();
+        i = i + 1;
+        instPour(i, b);
     }
 }
 
