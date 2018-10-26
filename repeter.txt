@@ -1,0 +1,12 @@
+procedure principale()
+    i = 16;
+
+    ecrire("Jusqu'à ce que i est inférieur 10, on repete :")
+    ecrire("i = i-1")
+    ecrire("Ici, on part de i = ",i)
+
+    repeter
+        i = i-1;
+    jusqua (i<10)
+
+finproc

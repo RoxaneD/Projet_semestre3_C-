@@ -1,0 +1,16 @@
+procedure principale()
+    i = 16;
+
+    ecrire("Tant que i>10 :")
+    ecrire("i = i-1")
+    ecrire("k = 50-i")
+    ecrire("j = k+i")
+    ecrire("Ici, on part avec i = ",i)
+
+    tantque (i>10)
+       i = i-1;  
+       k = 50-i;
+       j = k+i;
+    fintantque
+
+finproc

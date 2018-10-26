@@ -1,0 +1,15 @@
+procedure principale()
+    i = 16;
+    j = 1;
+
+    ecrire("Pour j<5 :")
+    ecrire("i = i-1")
+    ecrire("j = j+1")
+    ecrire("Ici, on part avec i = ",i," et j = ",j)
+
+    pour (;j<5;)
+        i=i-1;
+        j=j+1;
+    finpour
+
+finproc

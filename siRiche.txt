@@ -1,0 +1,20 @@
+procedure principale()
+    i = 16;
+
+    ecrire ("Si i<15 : j=1 et k=2")
+    ecrire("Si i<17 : j=2 et k=3")
+    ecrire("Sinon j=5 et k=7")
+    ecrire("Ici, on part avec i = ",i)
+
+    si (i<15)
+        j=1;
+        k=2;    
+    sinonsi (i<17)
+        j=2;
+        k=3;
+    sinon
+        j=5;
+        k=7;
+    finsi
+    
+finproc

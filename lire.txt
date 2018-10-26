@@ -1,0 +1,4 @@
+procedure principale()
+    lire (i,b)
+    ecrire ("i = ",i," & b = ",b)
+finproc
