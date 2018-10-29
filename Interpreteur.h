@@ -55,7 +55,7 @@ private:
     Noeud* instRepeter(int i = 0, bool b = false); //  <instRepeter> ::= repeter <seqInst> jusqua (<expression>)
     Noeud* instPour(int i = 0, bool b = false, bool p = false); //  <instPour> ::= pour ( [ <affectation> ] : <expression> ; [ <affectation> ] ) <seqInst> finpour
     Noeud* instEcrire(int i = 0, int j = 0, int k = 0, bool b = false); //  <instEcrire> ::= ecrire ( <expression> | <chaine> { , <expression> | <chaine> } )
-    Noeud* instLire(int i = 0, bool b = false); //  <instLire> ::= lire ( <variable> { , <variable> } )
+    Noeud* instLire(int i = 0, int j = 0, bool b = false); //  <instLire> ::= lire ( <variable> { , <variable> } )
 
 
     // outils pour simplifier l'analyse syntaxique

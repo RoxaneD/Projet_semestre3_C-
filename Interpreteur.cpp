@@ -273,7 +273,6 @@ Noeud * Interpreteur::instSiRiche(int i, int j, bool b) { // OK (Erreur)
 
 Noeud * Interpreteur::instTantQue(int i, bool b) { // OK (Erreur)
     //  <instTantQue> ::= tantque (<expression>) <seqInst> fintantque
-    cout << "i : " << i << endl;
     Noeud* condition;
     Noeud* sequence;
     try {
@@ -382,7 +381,6 @@ Noeud * Interpreteur::instRepeter(int i, bool b) { // OK (Erreur)
 
 Noeud * Interpreteur::instPour(int i, bool b, bool p) { // OK (Erreur)
     //  pour ([<affectation>] ; <expression> ; [<affectation>]) <seqInst> finpour
-    cout << "i : " << i << endl;
     Noeud* affect1;
     Noeud* condition;
     Noeud* affect2;
@@ -579,28 +577,85 @@ Noeud * Interpreteur::instEcrire(int i, int j, int k, bool b) {
     }
 }
 
-Noeud * Interpreteur::instLire(int i, bool b) {
+Noeud * Interpreteur::instLire(int i, int j, bool b) {
     //  lire (<variable> {,<variable>})
+    cout << "i : " << i << " | j : " << j << endl;
+    NoeudInstLire* sequence;
+    SymboleValue* s;
     try {
-        
-        testerEtAvancer("lire");
-        testerEtAvancer("(");
-        NoeudInstLire* sequence = new NoeudInstLire();
-        tester("<VARIABLE>");
-        SymboleValue* s = m_table.chercheAjoute(m_lecteur.getSymbole());
-        sequence->ajoute(s); // PROBLEME ICI
-        m_lecteur.avancer();
-        while (m_lecteur.getSymbole() == ",") {
-            m_lecteur.avancer();
-            tester("<VARIABLE>");
-            SymboleValue* s = m_table.chercheAjoute(m_lecteur.getSymbole());
-            sequence->ajoute(s);
-            m_lecteur.avancer();
+        if (i == 0) {
+            testerEtAvancer("lire");
+            i = 1;
         }
-        testerEtAvancer(")");
-        return sequence;
+        if (i == 1) {
+            testerEtAvancer("(");
+            i = 2;
+        }
+        if (i == 2) {
+            sequence = new NoeudInstLire();
+            if (sequence == nullptr) {
+                throw SyntaxeException();
+            }
+            i = 3;
+        }
+        if (i == 3) {
+            tester("<VARIABLE>");
+            s = m_table.chercheAjoute(m_lecteur.getSymbole());
+            if (s == nullptr) {
+                throw SyntaxeException();
+            } else {
+                sequence->ajoute(s);
+            }
+            m_lecteur.avancer();
+            i = 4;
+        }
+        if (i == 4) {
+            while (m_lecteur.getSymbole() == ",") {
+                if (j == 0) {
+                    m_lecteur.avancer();
+                    j = 1;
+                }
+                if (j == 1) {
+                    tester("<VARIABLE>");
+                    s = m_table.chercheAjoute(m_lecteur.getSymbole());
+                    if (s == nullptr) {
+                        throw SyntaxeException();
+                    } else {
+                        sequence->ajoute(s);
+                    }
+                    j = 2;
+                }
+                if (j == 2) {
+                    m_lecteur.avancer();
+                    j = 0;
+                }
+            }
+            i = 5;
+        }
+        if (i == 5) {
+            testerEtAvancer(")");
+            i = 6;
+        }
+        if (i == 6 && b == false) {
+            return sequence;
+        } else if (i == 6) {
+            m_arbre = nullptr;
+            return nullptr;
+        }
     } catch (SyntaxeException & e) {
-        cout << e.what() << endl;
+        if (i == 4 && j == 1) {
+            ;
+        } else {
+            cout << e.what() << endl;
+        }
+        bool b = true;
+        setSynthaxeIncorrecte();
+        if (j != 0) {
+            j = j + 1;
+        } else {
+            i = i + 1;
+        }
+        instLire(i, j, b);
     }
 }
 
