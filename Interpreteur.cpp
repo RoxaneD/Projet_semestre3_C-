@@ -1,6 +1,7 @@
 #include "Interpreteur.h"
 #include <stdlib.h>
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 Interpreteur::Interpreteur(ifstream & fichier) :
@@ -658,6 +659,27 @@ Noeud * Interpreteur::instLire(int i, int j, bool b) {
         instLire(i, j, b);
     }
 }
+
+void Interpreteur::traduitEnCPP(ostream & cout, unsigned int indentation) const {
+    cout << setw(4 * indentation) << "" << "int main() {" << endl;
+    int i = 1;
+    while (i <= m_table.getTaille()) {
+        int a = m_table[i-1].getValeur();
+        stringstream ss;
+        ss << a;
+        string b = ss.str();
+        if (b != ((m_table[i-1]).getChaine())) {
+            string nom = ((m_table[i-1]).getChaine());
+            cout << setw(4 * (indentation + 1)) << "" << "int " << nom << "; " << endl;
+        }
+        i = i + 1;
+    }
+    
+    //getArbre()->traduitEnCPP(cout, indentation + 1);
+    cout << setw(4 * (indentation + 1)) << "" << "return 0;" << endl;
+    cout << setw(4 * indentation) << "}" << endl;
+}
+
 
 
 

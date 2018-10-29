@@ -16,12 +16,16 @@ public:
     }
     int executer(); // exécute le SymboleValue (revoie sa valeur !)
 
+    inline int getValeur() const {
+        return m_valeur;
+    }
+    
     inline void setValeur(int valeur) {
         this->m_valeur = valeur;
         m_defini = true;
     } // accesseur
 
-    inline bool estDefini() {
+    inline bool estDefini() const {
         return m_defini;
     } // accesseur
 

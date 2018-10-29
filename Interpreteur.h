@@ -32,6 +32,9 @@ public:
     bool setSynthaxeIncorrecte() {
         this->synthaxeIncorrecte = true;
     }
+    
+    // compilation en cpp
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
 
 private:
     bool synthaxeIncorrecte = false;
@@ -62,6 +65,7 @@ private:
     void tester(const string & symboleAttendu) const throw (SyntaxeException); // Si symbole courant != symboleAttendu, on lève une exception
     void testerEtAvancer(const string & symboleAttendu) throw (SyntaxeException); // Si symbole courant != symboleAttendu, on lève une exception, sinon on avance
     void erreur(const string & mess) const throw (SyntaxeException); // Lève une exception "contenant" le message mess
+  
 };
 
 #endif /* INTERPRETEUR_H */
