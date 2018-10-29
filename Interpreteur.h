@@ -53,7 +53,7 @@ private:
     Noeud* instSiRiche(int i = 0, int j = 0, bool b = false); //  <instSiRiche> ::= si (<expression>) <seqInst> { sinonsi (<expression>) <seqInst> } [sinon <seqInst>] finsi
     Noeud* instTantQue(int i = 0, bool b = false); //  <instTantQue> ::= tantque (<expression>) <seqInst> fintantque
     Noeud* instRepeter(int i = 0, bool b = false); //  <instRepeter> ::= repeter <seqInst> jusqua (<expression>)
-    Noeud* instPour(int i = 0, bool b = false); //  <instPour> ::= pour ( [ <affectation> ] : <expression> ; [ <affectation> ] ) <seqInst> finpour
+    Noeud* instPour(int i = 0, bool b = false, bool p = false); //  <instPour> ::= pour ( [ <affectation> ] : <expression> ; [ <affectation> ] ) <seqInst> finpour
     Noeud* instEcrire(int i = 0, bool b = false); //  <instEcrire> ::= ecrire ( <expression> | <chaine> { , <expression> | <chaine> } )
     Noeud* instLire(int i = 0, bool b = false); //  <instLire> ::= lire ( <variable> { , <variable> } )
 

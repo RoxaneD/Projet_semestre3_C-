@@ -1,11 +1,16 @@
 # Erreurs testées : 
 #### (accumulable)
-# pas de première parenthèse après le pour
-#
+# pas de première parenthèse après le pour                      (accumulable)
+# pas de premier point virgule avec une premiere affectation    (accumulable)
+# pas de condition dans la parenthèse                           (accumulable)
+# pas le deuxième point virgule                                 (accumulable)
+# pas de dernière parenthèse après le pour                      (accumulable)
+# pas d'instructions après dernière parenthèse du pour          (accumulable)
 
 # Erreurs qu'on ne peut pas cumuler :
 ####
-# On ne peut pas obtenir d'erreur claire s'il n'y a rien du tout après jusqua
+# On ne peut pas obtenir d'erreur claire s'il n'y a rien du tout après le pour
+# On ne peut pas obtenir d'erreur claire s'il n'y a pas la premier point virgule sans premiere affectation
 
 procedure principale()
     i = 16;
@@ -15,5 +20,11 @@ procedure principale()
         i=i-1;
         j=j+1;
     finpour
+
+    pour (;j<10;)
+        i=i-1;
+        j=j+1;
+    finpour
+
 
 finproc
