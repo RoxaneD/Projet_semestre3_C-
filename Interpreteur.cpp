@@ -465,43 +465,124 @@ Noeud * Interpreteur::instPour(int i, bool b, bool p) { // OK (Erreur)
     }
 }
 
-Noeud * Interpreteur::instEcrire(int i, bool b) {
+Noeud * Interpreteur::instEcrire(int i, int j, int k, bool b) {
     //  ecrire ( <expression> | <chaine> { , <expression> | <chaine> } )
+    NoeudInstEcrire* sequence;
+    Noeud* chain;
+    Noeud* condition;
     try {
-        testerEtAvancer("ecrire");
-        testerEtAvancer("(");
-        NoeudInstEcrire* sequence = new NoeudInstEcrire();
-        Noeud* chain;
-        Noeud* condition;
-        if (m_lecteur.getSymbole() == "<CHAINE>") {
-            chain = chaine();
-            sequence->ajoute((SymboleValue*) chain);
-            m_lecteur.avancer();
-        } else {
-            condition = expression();
-            sequence->ajoute((SymboleValue*) condition);
+        if (i == 0) {
+            testerEtAvancer("ecrire");
+            i = 1;
         }
-        while (m_lecteur.getSymbole() == ",") {
-            m_lecteur.avancer();
+        if (i == 1) {
+            testerEtAvancer("(");
+            i = 2;
+        }
+        if (i == 2) {
+            sequence = new NoeudInstEcrire();
+            if (sequence == nullptr) {
+                throw SyntaxeException();
+            }
+            i = 3;
+        }
+        if (i == 3) {
             if (m_lecteur.getSymbole() == "<CHAINE>") {
-                chain = chaine();
-                sequence->ajoute((SymboleValue*) chain);
-                m_lecteur.avancer();
+                if (j == 0) {
+                    chain = chaine();
+                    if (chain == nullptr) {
+                        throw SyntaxeException();
+                    } else {
+                        sequence->ajoute((SymboleValue*) chain);
+                    }
+                    j = 1;
+                }
+                if (j == 1) {
+                    m_lecteur.avancer();
+                    j = 0;
+                }
             } else {
                 condition = expression();
-                sequence->ajoute((SymboleValue*) condition);
+                if (condition == nullptr) {
+                    throw SyntaxeException();
+                } else {
+                    sequence->ajoute((SymboleValue*) condition);
+                }
             }
+            i = 4;
         }
-        testerEtAvancer(")");
-        return sequence;
+        if (i == 4) {
+            while (m_lecteur.getSymbole() == ",") {
+                if (j == 0) {
+                    m_lecteur.avancer();
+                    j = 1;
+                }
+                if (j == 1) {
+                    if (m_lecteur.getSymbole() == "<CHAINE>") {
+                        if (k == 0) {
+                            chain = chaine();
+                            if (chain == nullptr) {
+                                throw SyntaxeException();
+                            } else {
+                                sequence->ajoute((SymboleValue*) chain);
+                            }
+                            k = 1;
+                        }
+                        if (k == 1) {
+                            m_lecteur.avancer();
+                            k = 0;
+                        }
+
+                    } else {
+                        condition = expression();
+                        if (condition == nullptr) {
+                            throw SyntaxeException();
+                        } else {
+                            sequence->ajoute((SymboleValue*) condition);
+                        }
+                    }
+                    j = 0;
+                }
+            }
+            i = 5;
+        }
+        if (i == 5) {
+            testerEtAvancer(")");
+            i = 6;
+        }
+        if (i == 6 && b == false) {
+            return sequence;
+        } else if (i == 6) {
+            m_arbre = nullptr;
+            return nullptr;
+        }
     } catch (SyntaxeException & e) {
-        cout << e.what() << endl;
+        if (i == 2) {
+            ;
+        } else if (i == 3) {
+            ;
+        } else if (i == 4 && j == 1) {
+            ;
+        } else {
+            cout << e.what() << endl;
+        }
+        bool b = true;
+        setSynthaxeIncorrecte();
+        if (k != 0) {
+            k = k + 1;
+        } else if (j != 0) {
+            j = j + 1;
+        } else {
+            i = i + 1;
+        }
+        instEcrire(i, j, k, b);
     }
 }
 
 Noeud * Interpreteur::instLire(int i, bool b) {
     //  lire (<variable> {,<variable>})
     try {
+        
         testerEtAvancer("lire");
         testerEtAvancer("(");
         NoeudInstLire* sequence = new NoeudInstLire();
