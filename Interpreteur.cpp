@@ -380,7 +380,7 @@ Noeud * Interpreteur::instRepeter(int i, bool b) { // OK (Erreur)
     }
 }
 
-Noeud * Interpreteur::instPour(int i, bool b) {
+Noeud * Interpreteur::instPour(int i, bool b, bool p) { // OK (Erreur)
     //  pour ([<affectation>] ; <expression> ; [<affectation>]) <seqInst> finpour
     cout << "i : " << i << endl;
     Noeud* affect1;
@@ -430,6 +430,9 @@ Noeud * Interpreteur::instPour(int i, bool b) {
             i = 8;
         }
         if (i == 8) {
+            if (p == true) {
+                m_lecteur.avancer();
+            }
             sequence = seqInst();
             if (sequence == nullptr) {
                 throw SyntaxeException();
@@ -447,7 +450,10 @@ Noeud * Interpreteur::instPour(int i, bool b) {
             return nullptr;
         }
     } catch (SyntaxeException & e) {
-        if ( i == 4 || i == 8) {
+        if (i == 7) {
+            p = true;
+        }
+        if (i == 4 || i == 8) {
             ;
         } else {
             cout << e.what() << endl;
@@ -455,7 +461,7 @@ Noeud * Interpreteur::instPour(int i, bool b) {
         bool b = true;
         setSynthaxeIncorrecte();
         i = i + 1;
-        instPour(i, b);
+        instPour(i, b, p);
     }
 }
 
