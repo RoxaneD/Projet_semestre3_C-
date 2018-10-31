@@ -1,11 +1,13 @@
 int main() {
     int i; 
+    int j; 
     i = 16;
-    do {
+    j = 1;
+    for (j = 1; j < 5; j = j + 1;) {
         i = i - 1;
-    } while (i < 10);
-    do {
+    }
+    for (j = 0; j < 10; j = j + 1;) {
         i = i - 1;
-    } while (i < 5);
+    }
     return 0;
 }

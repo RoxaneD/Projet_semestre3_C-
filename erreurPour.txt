@@ -16,14 +16,12 @@ procedure principale()
     i = 16;
     j = 1;
 
-    pour (;j<5;)
+    pour (j = 1;j<5; j = j+1)
         i=i-1;
-        j=j+1;
     finpour
 
-    pour (;j<10;)
+    pour (j = 0;j<10; j = j+1)
         i=i-1;
-        j=j+1;
     finpour
 
 
