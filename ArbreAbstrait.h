@@ -25,7 +25,9 @@ public:
         throw OperationInterditeException();
     }
     
-    virtual void traduitEnCPP(ostream & cout, unsigned int indentation) const{}
+    virtual void traduitEnCPP(ostream & cout, unsigned int indentation) const{
+        cout << this;
+    }
 
     virtual ~Noeud() {
     } // Présence d'un destructeur virtuel conseillée dans les classes abstraites

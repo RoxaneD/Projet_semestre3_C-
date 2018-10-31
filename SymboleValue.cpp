@@ -18,7 +18,7 @@ int SymboleValue::executer() {
 }
 
 void SymboleValue::traduitEnCPP(ostream & cout, unsigned int indentation) const {
-    
+    cout << setw(4 * indentation) << "" << m_valeur;
 }
 
 ostream & operator<<(ostream & cout, const SymboleValue & symbole) {

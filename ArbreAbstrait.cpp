@@ -44,7 +44,10 @@ int NoeudAffectation::executer() {
 }
 
 void NoeudAffectation::traduitEnCPP(ostream & cout, unsigned int indentation) const {
-
+    m_expression->traduitEnCPP(cout,indentation);
+    cout << " = ";
+    m_variable->traduitEnCPP(cout,0);
+    cout << endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -60,7 +63,7 @@ int NoeudChaine::executer() {
 }
 
 void NoeudChaine::traduitEnCPP(ostream & cout, unsigned int indentation) const {
-
+    cout << m_contenu.getChaine();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +99,9 @@ int NoeudOperateurBinaire::executer() {
 }
 
 void NoeudOperateurBinaire::traduitEnCPP(ostream & cout, unsigned int indentation) const {
-
+    m_operandeGauche->traduitEnCPP(cout, indentation);
+    cout << " " << m_operateur.getChaine() << " ";
+    m_operandeDroit->traduitEnCPP(cout,indentation);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
