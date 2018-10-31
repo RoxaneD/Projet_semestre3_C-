@@ -674,8 +674,7 @@ void Interpreteur::traduitEnCPP(ostream & cout, unsigned int indentation) const 
         }
         i = i + 1;
     }
-    
-    //getArbre()->traduitEnCPP(cout, indentation + 1);
+    getArbre()->traduitEnCPP(cout, indentation + 1);
     cout << setw(4 * (indentation + 1)) << "" << "return 0;" << endl;
     cout << setw(4 * indentation) << "}" << endl;
 }

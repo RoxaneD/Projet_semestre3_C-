@@ -17,6 +17,10 @@ int SymboleValue::executer() {
   return m_valeur;
 }
 
+void SymboleValue::traduitEnCPP(ostream & cout, unsigned int indentation) const {
+    
+}
+
 ostream & operator<<(ostream & cout, const SymboleValue & symbole) {
   cout << "\t" << (Symbole) symbole << "\t\t - Valeur=";
   if (symbole.m_defini) cout << symbole.m_valeur << " ";

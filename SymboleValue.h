@@ -16,6 +16,8 @@ public:
     }
     int executer(); // exécute le SymboleValue (revoie sa valeur !)
 
+    void traduitEnCPP(ostream & cout, unsigned int indentation) const;
+    
     inline int getValeur() const {
         return m_valeur;
     }

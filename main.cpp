@@ -31,7 +31,6 @@ int main(int argc, char* argv[]) {
         // test pour l'interprétation
         ofstream cout("traduction.cpp");
         interpreteur.traduitEnCPP(cout,0);
-        
     } catch (InterpreteurException & e) {
         cout << e.what() << endl;
     }
