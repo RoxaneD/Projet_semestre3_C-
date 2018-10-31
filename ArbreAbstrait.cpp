@@ -44,10 +44,10 @@ int NoeudAffectation::executer() {
 }
 
 void NoeudAffectation::traduitEnCPP(ostream & cout, unsigned int indentation) const {
-    m_expression->traduitEnCPP(cout,indentation);
+    m_variable->traduitEnCPP(cout,indentation);
     cout << " = ";
-    m_variable->traduitEnCPP(cout,0);
-    cout << endl;
+    m_expression->traduitEnCPP(cout,0);
+    cout << ";" << endl;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -198,7 +198,11 @@ int NoeudInstTantQue::executer() {
 }
 
 void NoeudInstTantQue::traduitEnCPP(ostream & cout, unsigned int indentation) const {
-
+    cout << setw(4 * indentation) << "" << "while (";
+    m_condition->traduitEnCPP(cout,0);
+    cout << ") {" << endl;
+    m_sequence->traduitEnCPP(cout, indentation+1);
+    cout << setw(4 * indentation) << "" << "}" << endl;
 }
 
 // NoeudInstRepeter
@@ -217,7 +221,11 @@ int NoeudInstRepeter::executer() {
 }
 
 void NoeudInstRepeter::traduitEnCPP(ostream & cout, unsigned int indentation) const {
-
+    cout << setw(4 * indentation) << "" << "do {" << endl;
+    m_sequence->traduitEnCPP(cout,indentation+1);
+    cout << setw(4 * indentation) << "" << "} while (";
+    m_condition->traduitEnCPP(cout, 0);
+    cout << ");" << endl;
 }
 
 // NoeudInstPour
