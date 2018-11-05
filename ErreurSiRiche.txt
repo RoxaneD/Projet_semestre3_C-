@@ -1,40 +1,100 @@
-# Erreurs testées : 
-####
-# pas la premiere parenthèse apres si       (accumulable)
-# rien dans la premiere parenthèse          (accumulable)
-# pas la derniere parenthèse apres si       (accumulable)
-# pas la premiere parenthèse apres sinonsi  (accumulable) 
-# rien dans la deuxième parenthèse          (accumulable)
-# pas la derniere parenthèse apres sinonsi  (accumulable)
-# rien dans le sinon                        (accumulable)
-
 # Erreurs qu'on ne peut pas cumuler :
-####
+# # #
 # On ne peut pas obtenir d'erreur claire s'il n'y a rien du tout entre si et les instructions du si 
 # idem pour le sinonsi
 
 
 procedure principale()
     i = 16;
-    si (i == 16)
-        j=1;
-        k=2;    
+
+# # # Pas la premiere parenthèse apres si  
+    si i == 16)
+        j = 1; 
     sinonsi (i == 17)
-        j=2;
-        k=3;
+        j = 2;
     sinon
-        k=4;
+        j = 3;
     finsi
 
-    i = 16;
-    si (i == 16)
-        j=1;
-        k=2;    
+# # # Rien dans la premiere parenthèse 
+    si ()
+        j = 1;
     sinonsi (i == 17)
-        j=2;
-        k=3;
+        j = 2;
     sinon
-        k=4;
+        j = 3;
+    finsi
+
+# # # Pas la derniere parenthèse apres si
+    si (i == 16
+        j = 1;
+    sinonsi (i == 17)
+        j = 2;
+    sinon
+        j = 3;
+    finsi
+
+# # # Rien dans le si 
+    si (i == 16)
+        
+    sinonsi (i == 17)
+        j = 2;
+    sinon
+        j = 3;
+    finsi
+
+# # # Pas la premiere parenthèse apres sinonsi  
+    si (i == 16)
+        j = 1;
+    sinonsi i == 17)
+        j = 2;
+    sinon
+        j = 3;
+    finsi
+
+# # # Rien dans la deuxième parenthèse
+    si (i == 16)
+        j = 1;
+    sinonsi ()
+        j = 2;
+    sinon
+        j = 3;
+    finsi
+
+# # # Pas la derniere parenthèse apres sinonsi  
+    si (i == 16)
+        j = 1;
+    sinonsi (i == 17
+        j = 2;
+    sinon
+        j = 3;
+    finsi
+
+# # # Rien dans le sinonsi
+    si (i == 16)
+        j = 1;
+    sinonsi (i == 17)
+        
+    sinon
+        j = 3;
+    finsi
+
+# # # Rien dans le sinon 
+    si (i == 16)
+        j = 1;
+    sinonsi (i == 17)
+        j = 2;
+    sinon
+        
+    finsi
+
+# # # Exemple de combinaison d'erreurs
+    si )
+
+    sinonsi )
+
+    sinon
+        
     finsi
 
 finproc

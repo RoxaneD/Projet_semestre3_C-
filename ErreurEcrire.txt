@@ -1,20 +1,22 @@
-# Erreurs testées : 
-#### 
-# Pas la première parenthèse après écrire  (accumulable)
-# Rien dans la parenthèse                  (accumulable)
-# Pas la première parenthèse après écrire  (accumulable)
-
 # Erreurs qu'on ne peut pas cumuler :
-####
+# # #
 # On ne peut pas obtenir d'erreur claire si on oublie des virgules
 
+
 procedure principale()
+    i = 2;
 
-    i = 16;
-    b = 2;
-    ecrire ("i = ",i," & b = ",b," & i*b = ",i*b)
+# # # Pas la première parenthèse après écrire 
+    ecrire "i = ",i)
 
-#    ecrire ("i = ",i," & b = ",b," & i*b = ",i*b)
+# # # Rien dans la parenthèse
+    ecrire ()
+
+# # # Pas la première parenthèse après écrire
+    ecrire ("i = ",i
+
+# # # Exemple de combinaison d'erreurs
+    ecrire
 
 finproc
 

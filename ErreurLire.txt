@@ -1,17 +1,20 @@
-# Erreurs testées : 
-#### 
-# Pas de première parenthèse après lire     (accumulable)
-# Rien dans la parenthèse                   (accumulable)
-# Pas de dernière parenthèse après lire     (accumulable)
-
 # Erreurs qu'on ne peut pas cumuler :
-####
+# # #
 # On ne peut pas obtenir d'erreur claire si pas de virgules
 
 
 procedure principale()
 
-    lire (u,b)
-    lire (a,c)
+# # # Pas de première parenthèse après lire
+    lire a,b)
+
+# # # Rien dans la parenthèse
+    lire ()
+
+# # # Pas de dernière parenthèse après lire
+    lire (e,f
+
+# # # Exemple de combinaison d'erreurs
+    lire
 
 finproc

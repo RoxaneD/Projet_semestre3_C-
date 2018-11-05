@@ -1,26 +1,34 @@
-# Erreurs testées : 
-####
-# pas la premiere parenthèse apres tant que (accumulable)
-# rien dans la parenthèse                   (accumulable)
-# pas la dernière parenthèse apres tant que (accumulable)
-# pas d'instruction après le tant que       (accumulable)
-
 # Erreurs qu'on ne peut pas cumuler :
-####
+# # #
 # On ne peut pas obtenir d'erreur claire s'il n'y a rien du tout entre tant que et les instructions
 
+
 procedure principale()
+    i = 10;
 
-    i = 16;
+# # # Pas la premiere parenthèse apres tant que 
+    tantque i>10)
+       i = i-1;  
+    fintantque
+
+# # # Rien dans la parenthèse      
+    tantque ()
+       i = i-1;  
+    fintantque
+
+# # # Pas la dernière parenthèse apres tant que 
+    tantque (i>10
+       i = i-1;  
+    fintantque
+
+# # # Pas d'instruction après le tant que
     tantque (i>10)
-       i = i-1;  
-       k = 50-i;
-       j = k+i;
+
     fintantque
 
-    tantque (i>5)
-       i = i-1;  
-       k = 50-i;
-       j = k+i;
+# # # Exemple de combinaison d'erreurs
+    tantque )
+
     fintantque
+
 finproc
