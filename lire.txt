@@ -1,4 +1,8 @@
+# test instruction lire
+# résultat attendu : 
+# i = (valeur rentrée par l'utilisateur) 
+# b = (valeur rentrée par l'utilisateur)
+
 procedure principale()
-    lire (i,b)
-    ecrire ("i = ",i," & b = ",b)
+    lire (i, b)
 finproc

@@ -1,15 +1,13 @@
+# test instruction pour
+# résultat attendu : 
+# i = 12 
+# j = 5
+
 procedure principale()
     i = 16;
-    j = 1;
 
-    ecrire("Pour j<5 :")
-    ecrire("i = i-1")
-    ecrire("j = j+1")
-    ecrire("Ici, on part avec i = ",i," et j = ",j)
-
-    pour (;j<5;)
-        i=i-1;
-        j=j+1;
+    pour (j = 1; j < 5; j = j + 1)
+        i = i - 1;
     finpour
 
 finproc

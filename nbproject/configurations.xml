@@ -39,7 +39,6 @@
       <itemPath>pour.txt</itemPath>
       <itemPath>repeter.txt</itemPath>
       <itemPath>siRiche.txt</itemPath>
-      <itemPath>t.txt</itemPath>
       <itemPath>tantQue.txt</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -117,8 +116,6 @@
       </item>
       <item path="siRiche.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="t.txt" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="tantQue.txt" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
@@ -192,8 +189,6 @@
       <item path="repeter.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="siRiche.txt" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="t.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tantQue.txt" ex="false" tool="3" flavor2="0">
       </item>

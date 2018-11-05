@@ -1,5 +1,0 @@
-procedure principale()
-    i = 16;
-finproc
-
-

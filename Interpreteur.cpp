@@ -580,7 +580,7 @@ Noeud * Interpreteur::instEcrire(int i, int j, int k, bool b) {
 
 Noeud * Interpreteur::instLire(int i, int j, bool b) {
     //  lire (<variable> {,<variable>})
-    cout << "i : " << i << " | j : " << j << endl;
+    //cout << "i : " << i << " | j : " << j << endl;
     NoeudInstLire* sequence;
     SymboleValue* s;
     try {

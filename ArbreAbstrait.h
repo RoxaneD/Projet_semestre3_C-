@@ -29,6 +29,10 @@ public:
         cout << this;
     }
 
+    virtual void traduitEnCPPAffectionSans(ostream & cout, unsigned int indentation) const {
+        cout << "Opération impossible. Possible seulement pour une affectation.";
+    }
+
     virtual ~Noeud() {
     } // Présence d'un destructeur virtuel conseillée dans les classes abstraites
 
@@ -64,7 +68,8 @@ public:
     } // A cause du destructeur virtuel de la classe Noeud
     int executer(); // Exécute (évalue) l'expression et affecte sa valeur à la variable
     void traduitEnCPP(ostream & cout, unsigned int indentation) const;
-
+    void traduitEnCPPAffectionSans(ostream & cout, unsigned int indentation) const;
+    
 private:
     Noeud* m_variable;
     Noeud* m_expression;

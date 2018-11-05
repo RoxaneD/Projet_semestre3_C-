@@ -1,13 +1,8 @@
 int main() {
+    int b; 
     int i; 
-    int j; 
     i = 16;
-    j = 1;
-    for (j = 1; j < 5; j = j + 1;) {
-        i = i - 1;
-    }
-    for (j = 0; j < 10; j = j + 1;) {
-        i = i - 1;
-    }
+    b = 2;
+    cout << "i = " << i << " & b = " << b << " & i*b = " << i * b << endl;
     return 0;
 }

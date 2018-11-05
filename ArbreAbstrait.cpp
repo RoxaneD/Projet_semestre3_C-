@@ -51,6 +51,12 @@ void NoeudAffectation::traduitEnCPP(ostream & cout, unsigned int indentation) co
     cout << ";";
 }
 
+void NoeudAffectation::traduitEnCPPAffectionSans(ostream & cout, unsigned int indentation) const {
+    m_variable->traduitEnCPP(cout,indentation);
+    cout << " = ";
+    m_expression->traduitEnCPP(cout,0);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudChaine
 ////////////////////////////////////////////////////////////////////////////////
@@ -266,7 +272,7 @@ void NoeudInstPour::traduitEnCPP(ostream & cout, unsigned int indentation) const
         m_affect1->traduitEnCPP(cout,0);
         cout << " ";
         m_condition->traduitEnCPP(cout,0); cout << "; ";
-        m_affect2->traduitEnCPP(cout,0);
+        m_affect2->traduitEnCPPAffectionSans(cout,0);
         cout << ") {" << endl;
         m_sequence->traduitEnCPP(cout,indentation+1);
         cout << setw(4 * indentation) << "" << "}";
@@ -295,17 +301,19 @@ int NoeudInstEcrire::executer() {
 }
 
 void NoeudInstEcrire::traduitEnCPP(ostream & cout, unsigned int indentation) const {
+    cout << setw(4 * indentation) << "" << "cout << ";
     for (unsigned int i = 0; i < m_contenuAEcrire.size(); i++) {
         if (*((SymboleValue*) m_contenuAEcrire[i]) == "<CHAINE>") {
             string aAfficher = m_contenuAEcrire[i]->getChaine();
             aAfficher.erase(0, 1);
             aAfficher.pop_back();
-            cout << "cout << " << aAfficher << ";" << endl;
+            cout << "\"" << aAfficher << "\"" << " << ";
         } else {
             m_contenuAEcrire[i]->traduitEnCPP(cout,0);
+            cout << " << ";
         }
     }
-    cout << endl;
+    cout << "endl;";
 }
 
 void NoeudInstEcrire::ajoute(SymboleValue* instruction) {
@@ -329,10 +337,13 @@ int NoeudInstLire::executer() {
 }
 
 void NoeudInstLire::traduitEnCPP(ostream & cout, unsigned int indentation) const {
-    int valeur;
+    int valeur; int i = 0;
     for (unsigned int i = 0; i < m_contenuALire.size(); i++) {
-        cout << "Valeur de : " << m_contenuALire[i]->getChaine() << endl;
-        cin >> valeur;
+        if (i != 0) {
+            cout << endl;
+        }
+        cout << setw(4 * indentation) << "" << "cout << \"Valeur de "<< m_contenuALire[i]->getChaine() << " :\" << endl;" << endl;
+        cout << setw(4 * indentation) << "" << "cin >> " << m_contenuALire[i]->getChaine() <<";";
         m_contenuALire[i]->setValeur(valeur);
     }
 }

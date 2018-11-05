@@ -1,5 +1,11 @@
+# test instruction ecrire
+# résultat attendu : 
+# Ecrit à l'écran (lors de l'execution de l'arbre): 
+# i = 16 & b = 2 & i*b = 32
+
 procedure principale()
     i = 16;
     b = 2;
     ecrire ("i = ",i," & b = ",b," & i*b = ",i*b)
+
 finproc
