@@ -22,6 +22,14 @@ CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/m3105-tp5
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
 CND_PACKAGE_NAME_Release=m3105-tp5.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/m3105-tp5.tar
+# TradCPP configuration
+CND_PLATFORM_TradCPP=GNU-Linux
+CND_ARTIFACT_DIR_TradCPP=dist/TradCPP/GNU-Linux
+CND_ARTIFACT_NAME_TradCPP=m3105-tp5
+CND_ARTIFACT_PATH_TradCPP=dist/TradCPP/GNU-Linux/m3105-tp5
+CND_PACKAGE_DIR_TradCPP=dist/TradCPP/GNU-Linux/package
+CND_PACKAGE_NAME_TradCPP=m3105-tp5.tar
+CND_PACKAGE_PATH_TradCPP=dist/TradCPP/GNU-Linux/package/m3105-tp5.tar
 #
 # include compiler specific variables
 #

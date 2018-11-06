@@ -661,6 +661,10 @@ Noeud * Interpreteur::instLire(int i, int j, bool b) {
 }
 
 void Interpreteur::traduitEnCPP(ostream & cout, unsigned int indentation) const {
+    cout << setw(4 * indentation) << "" << "#include <iostream>" << endl;
+    cout << endl;
+    cout << setw(4 * indentation) << "" << "using namespace std;" << endl;
+    cout << endl;
     cout << setw(4 * indentation) << "" << "int main() {" << endl;
     int i = 1;
     while (i <= m_table.getTaille()) {

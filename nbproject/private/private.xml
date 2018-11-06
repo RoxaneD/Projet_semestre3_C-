@@ -2,21 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <data xmlns="http://www.netbeans.org/ns/make-project-private/1">
         <activeConfTypeElem>1</activeConfTypeElem>
-        <activeConfIndexElem>0</activeConfIndexElem>
+        <activeConfIndexElem>2</activeConfIndexElem>
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/ArbreAbstrait.h</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/Symbole.h</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/Symbole.cpp</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/Interpreteur.cpp</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/ArbreAbstrait.cpp</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/SymboleValue.cpp</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/main.cpp</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/Interpreteur.h</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/SymboleValue.h</file>
-            <file>file:/users/info/etu-s3/deflandr/Documents/M3105/M3105-TP5/erreurPour.txt</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
