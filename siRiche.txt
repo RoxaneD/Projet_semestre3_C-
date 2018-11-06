@@ -1,21 +1,26 @@
 # test instruction siRiche
 # résultat attendu : 
-# i = 16
-# j = 2
-# k = 3
+# a = 16
+# b = 2
+# c = 3
 
 procedure principale()
-    i = 16;
+    a = 16;
 
-    si (i<15)
-        j=1;
-        k=2;    
-    sinonsi (i<17)
-        j=2;
-        k=3;
+    si (a<15)
+        b=1;
+        c=2;    
+    sinonsi (a<17)
+        b=2;
+        c=3;
     sinon
-        j=5;
-        k=7;
+        b=5;
+        c=7;
     finsi
     
 finproc
+
+# Code en c++ pour vérifier (à c/c)
+#   cout << "a : " << a << endl;
+#   cout << "b : " << b << endl;
+#   cout << "c : " << c;

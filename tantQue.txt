@@ -1,16 +1,21 @@
 # test instruction tantQue
 # résultat attendu : 
-# i = 10
-# k = 40
-# j = 50
+# a = 10
+# b = 40
+# c = 50
 
 procedure principale()
-    i = 16;
+    a = 16;
 
-    tantque (i > 10)
-       i = i - 1;  
-       k = 50 - i;
-       j = k + i;
+    tantque (a > 10)
+       a = a - 1;  
+       b = 50 - a;
+       c = b + a;
     fintantque
 
 finproc
+
+# Code en c++ pour vérifier (à c/c)
+#   cout << "a : " << a << endl;
+#   cout << "b : " << b << endl;
+#   cout << "c : " << c;

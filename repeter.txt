@@ -1,12 +1,15 @@
 # test instruction repeter
 # résultat attendu : 
-# i = 9 
+# a = 9 
 
 procedure principale()
-    i = 16;
+    a = 16;
 
     repeter
-        i = i-1;
-    jusqua (i<10)
+        a = a-1;
+    jusqua (a<10)
 
 finproc
+
+# Code en c++ pour vérifier (à c/c)
+#   cout << "a : " << a << endl;

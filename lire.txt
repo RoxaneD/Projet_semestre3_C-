@@ -1,8 +1,12 @@
 # test instruction lire
 # résultat attendu : 
-# i = (valeur rentrée par l'utilisateur) 
+# a = (valeur rentrée par l'utilisateur) 
 # b = (valeur rentrée par l'utilisateur)
 
 procedure principale()
-    lire (i, b)
+    lire (a, b)
 finproc
+
+# Code en c++ pour vérifier (à c/c)
+#   cout << "a : " << a << endl;
+#   cout << "b : " << b;
