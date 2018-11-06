@@ -15,7 +15,6 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
-      <itemPath>traduction.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -27,6 +26,7 @@
       <itemPath>SymboleValue.cpp</itemPath>
       <itemPath>TableSymboles.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>traduction.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="f1" displayName="Tests" projectFiles="true">
       <itemPath>ErreurEcrire.txt</itemPath>
